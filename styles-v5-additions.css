@@ -1,0 +1,170 @@
+/* =========================================================
+   NICO — PHOTOGRAPHY / V5
+   Pegá este bloque AL FINAL de src/styles.css
+   ========================================================= */
+
+.app {
+  position: relative;
+  min-height: 100svh;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.gallery-atmosphere {
+  position: fixed;
+  inset: -15%;
+  z-index: -2;
+  pointer-events: none;
+  opacity: 0.20;
+  filter: blur(46px) saturate(0.7);
+  transform: scale(1.08);
+  background:
+    radial-gradient(circle at 50% 46%, rgba(255,255,255,.09), transparent 30%),
+    radial-gradient(circle at 18% 68%, rgba(255,255,255,.05), transparent 25%),
+    radial-gradient(circle at 82% 24%, rgba(255,255,255,.045), transparent 22%);
+}
+
+.category-nav {
+  position: fixed;
+  top: 26px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 30;
+  width: min(720px, calc(100vw - 48px));
+  pointer-events: auto;
+}
+
+.category-nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(24px, 5vw, 58px);
+  padding: 0 0 12px;
+  border-bottom: 1px solid rgba(243,242,238,.14);
+}
+
+.category-link {
+  position: relative;
+  appearance: none;
+  border: 0;
+  background: transparent;
+  padding: 5px 0;
+  color: rgba(243,242,238,.42);
+  font-family: "Manrope", sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .14em;
+  line-height: 1;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    color 260ms ease,
+    transform 320ms cubic-bezier(.22,1,.36,1),
+    text-shadow 260ms ease;
+}
+
+.category-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -13px;
+  height: 1px;
+  background: rgba(243,242,238,.82);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 320ms cubic-bezier(.22,1,.36,1);
+}
+
+.category-link:hover {
+  color: rgba(243,242,238,.92);
+  transform: translateY(-1px) scale(1.035);
+}
+
+.category-link:hover::after,
+.category-link.is-active::after {
+  transform: scaleX(1);
+}
+
+.category-link.is-active {
+  color: #f3f2ee;
+  transform: translateY(-1px);
+  text-shadow: 0 0 16px rgba(243,242,238,.12);
+}
+
+.category-link:focus-visible {
+  outline: 1px solid rgba(243,242,238,.55);
+  outline-offset: 8px;
+}
+
+.gallery-canvas {
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.gallery-hint {
+  opacity: .40;
+  transition: opacity 260ms ease;
+}
+
+.gallery-shell:hover .gallery-hint {
+  opacity: .62;
+}
+
+.footer-right {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+
+.footer-gallery-name {
+  color: rgba(243,242,238,.34);
+  font: 400 9px/1 "DM Mono", monospace;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+.footer-contact {
+  transition:
+    opacity 180ms ease,
+    transform 260ms cubic-bezier(.22,1,.36,1),
+    letter-spacing 260ms ease;
+}
+
+.footer-contact:hover {
+  transform: translateY(-1px);
+  letter-spacing: .12em;
+}
+
+@media (max-width: 700px) {
+  .category-nav {
+    top: 20px;
+    width: calc(100vw - 28px);
+  }
+
+  .category-nav-inner {
+    justify-content: flex-start;
+    overflow-x: auto;
+    gap: 25px;
+    padding-bottom: 11px;
+    scrollbar-width: none;
+  }
+
+  .category-nav-inner::-webkit-scrollbar {
+    display: none;
+  }
+
+  .category-link {
+    flex: 0 0 auto;
+    font-size: 9px;
+  }
+
+  .footer-gallery-name {
+    display: none;
+  }
+
+  .footer-right {
+    gap: 0;
+  }
+}
