@@ -47,15 +47,12 @@ export default function App() {
         setContactOpen(false);
       }
     };
-
     document.addEventListener("keydown", handleKeyDown);
     return () => document.removeEventListener("keydown", handleKeyDown);
   }, []);
 
   return (
     <div className="app">
-      <div className="gallery-atmosphere" aria-hidden="true" />
-
       <Intro onContact={() => setContactOpen(true)} />
 
       <nav className="category-nav" aria-label="Galerías">
@@ -64,10 +61,9 @@ export default function App() {
             <button
               key={category}
               type="button"
-              className={`category-link ${
-                activeCategory === category ? "is-active" : ""
-              }`}
+              className={`category-link ${activeCategory === category ? "is-active" : ""}`}
               onClick={() => chooseCategory(category)}
+              aria-pressed={activeCategory === category}
             >
               <span>{category}</span>
             </button>
@@ -75,23 +71,28 @@ export default function App() {
         </div>
       </nav>
 
-      <Gallery
-        photos={filteredPhotos}
-        onSelect={(index) => setSelectedIndex(index)}
-      />
+      {filteredPhotos.length ? (
+        <Gallery
+          photos={filteredPhotos}
+          onSelect={(index) => setSelectedIndex(index)}
+        />
+      ) : (
+        <main className="gallery-shell gallery-empty">
+          <div className="empty-category">
+            <span className="eyebrow">PRÓXIMAMENTE</span>
+            <p>Estoy preparando esta galería.</p>
+          </div>
+        </main>
+      )}
 
       <footer className="site-footer">
         <div className="footer-info">
           <span>{photographer.name}</span>
           <span>{photographer.tagline}</span>
         </div>
-
         <div className="footer-right">
           <span className="footer-gallery-name">{activeCategory}</span>
-          <button
-            className="footer-contact"
-            onClick={() => setContactOpen(true)}
-          >
+          <button className="footer-contact" onClick={() => setContactOpen(true)}>
             CONTACTO ↗
           </button>
         </div>
@@ -108,9 +109,7 @@ export default function App() {
         />
       )}
 
-      {contactOpen && (
-        <ContactPanel onClose={() => setContactOpen(false)} />
-      )}
+      {contactOpen && <ContactPanel onClose={() => setContactOpen(false)} />}
     </div>
   );
 }

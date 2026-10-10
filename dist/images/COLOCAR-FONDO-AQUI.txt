@@ -1,0 +1,12 @@
+FONDO DE LA GALERÍA
+
+Copiá tu foto de fondo en esta carpeta y renombrala exactamente:
+gallery-background.jpg
+
+Ruta final:
+public/images/gallery-background.jpg
+
+Formatos sugeridos: JPG o WebP, horizontal, idealmente 1920 x 1080 o superior.
+Para usar WebP, renombrá la referencia url("/images/gallery-background.jpg") en src/styles.css a gallery-background.webp.
+La capa oscura se controla con --gallery-background-overlay en src/styles.css:
+0.25 = foto más visible; 0.55 = más oscura.

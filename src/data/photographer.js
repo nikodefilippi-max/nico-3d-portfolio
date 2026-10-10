@@ -1,12 +1,12 @@
 export const photographer = {
   name: "ND",
-  title: "Photography",
+  title: "Niko Defilippi Photography",
   tagline: "Surf · Lifestyle · Retrato · Marcas",
 
   // Reemplazá estos datos por los tuyos.
-  whatsapp: "54 351 2894641",
-  instagram: "https://instagram.com/tuusuario",
-  email: "hola@tudominio.com",
+  whatsapp: "54 3512894641",
+  instagram: "https://instagram.com/niko_defilippi",
+  email: "nikodefilippi@gmail.com",
 
   services: [
     "Sesiones personales",

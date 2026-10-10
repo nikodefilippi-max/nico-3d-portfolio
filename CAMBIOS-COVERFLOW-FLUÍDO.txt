@@ -1,0 +1,10 @@
+NICO — PHOTOGRAPHY | CAMBIOS DE ESTA VERSIÓN
+
+1. Una única estética: eliminada la capa decorativa radial anterior.
+2. Movimiento con easing entre posición objetivo y posición visual.
+3. Sin giro automático en reposo.
+4. Laterales más juntas y más de perfil.
+5. Fondo más oscuro y menos saturado.
+6. Pasos de instalación y reversión en MEJORAS-COVERFLOW-Y-FONDO.md.
+
+IMPORTANTE: ejecutar npm run build antes de publicar.
