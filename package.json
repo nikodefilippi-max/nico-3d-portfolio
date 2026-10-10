@@ -16,5 +16,7 @@
     "three": "^0.180.0",
     "vite": "^7.1.7"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "webpack-cli": "^7.2.3"
+  }
 }
