@@ -32,8 +32,10 @@ export function createRadialGallery(mount, { photos = [], onSelect, reducedMotio
   const isMobile = () => window.innerWidth < 700;
   const cardWidth = () => isMobile() ? 2.05 : 2.72;
   const cardHeight = () => isMobile() ? 2.78 : 3.42;
-  // Centers closer together create the layered album-cover silhouette.
-  const spacing = () => isMobile() ? 0.42 : 0.58;
+  // Separación entre centros calibrada para dejar un pequeño aire visible
+  // entre la portada frontal y el canto proyectado de la tarjeta vecina.
+  // Antes los valores eran demasiado bajos y las fotos se montaban entre sí.
+  const spacing = () => isMobile() ? 1.52 : 2.05;
   const cards = [];
   let current = 0; // rendered position, eased toward target
   let target = 0;  // requested position from pointer/wheel/inertia
@@ -112,7 +114,9 @@ export function createRadialGallery(mount, { photos = [], onSelect, reducedMotio
       const visibleFactor = Math.max(0, 1 - abs / maxVisible);
       const h = Math.min(cardHeight(), cardWidth() / Math.max(card.aspect, 0.05));
       const w = h * Math.max(card.aspect, 0.05);
-      // Slightly stepped depth and a stronger Y rotation reveal the physical edge.
+      // La separación horizontal deja un pequeño hueco entre tarjetas incluso
+      // cuando una vecina está girada. La profundidad escalonada conserva el
+      // efecto Cover Flow sin que las portadas se tapen unas a otras.
       card.mesh.position.set(d * spacing(), 0, -Math.min(abs, 6) * 0.14);
       card.mesh.rotation.y = THREE.MathUtils.clamp(-d * 1.22, -1.49, 1.49);
       const scale = abs < 0.01 ? 1.10 : Math.max(0.70, 1 - abs * 0.045);
